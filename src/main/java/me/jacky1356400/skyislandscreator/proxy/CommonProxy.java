@@ -115,12 +115,10 @@ public class CommonProxy {
                     " Be careful with high numbers.");
             if (!config.hasKey("misc", "Island Type")) {
                 boolean skyFactory = config.getBoolean("Sky Factory", "misc", false, "Set this to true if you are playing on Sky Factory.");
-                boolean platform = config.getBoolean("Platform", "misc", false, "Set to true if you want to start on a 3x3 platform, or false for a tree.");
-                if (skyFactory || !platform) {
+                if (skyFactory) {
                     islandType = config.getString("Island Type", "misc", "tree", "Set this to the type of platform you want:\n" +
                             "  'grass'     A single grass block.\n" +
                             "  'tree'      A small oak tree on a grass block. This is the standard start.\n" +
-                            "  'platform'  A 3x3 platform with a chest.\n" +
                             "  'GoG'       An island similar to Garden of Glass from Botania.\n");
                     config.moveProperty("misc", "Sky Factory", "forRemoval");
                     config.moveProperty("misc", "Platform", "forRemoval");
@@ -130,12 +128,10 @@ public class CommonProxy {
                 islandType = config.getString("Island Type", "misc", "tree", "Set this to the type of platform you want:\n" +
                         "  'grass'     A single grass block.\n" +
                         "  'tree'      A small oak tree on a grass block. This is the standard start.\n" +
-                        "  'platform'  A 3x3 platform with a chest.\n" +
                         "  'GoG'       An island similar to Garden of Glass from Botania.\n");
                 ArrayList<String> types = new ArrayList<>();
                 types.add("grass");
                 types.add("tree");
-                types.add("platform");
                 types.add("GoG");
 
                 boolean valid = false;
@@ -146,8 +142,8 @@ public class CommonProxy {
                     }
                 }
                 if (!valid) {
-                    SkyIslandsCreator.logger.warn("Invalid island option detected. Using 'platform' as default.");
-                    islandType = "platform";
+                    SkyIslandsCreator.logger.warn("Invalid island option detected. Using 'tree' as default.");
+                    islandType = "tree";
                 }
             }
 
