@@ -16,7 +16,7 @@ public class ClientProxy extends CommonProxy {
         super.init(event);
     }
 
-    public void preInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent event) {
         try {
             super.postInit(event);
         } catch (IOException e) {
