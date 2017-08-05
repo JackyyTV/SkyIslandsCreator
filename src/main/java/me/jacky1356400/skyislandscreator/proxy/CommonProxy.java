@@ -23,7 +23,7 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Config.init(new File(event.getModConfigurationDirectory(), "SkyIslandsCreator/SkyIslandsCreator.cfg"));
         File dir = event.getModConfigurationDirectory();
-        directory = new File(dir.getParentFile(), "config");
+        directory = new File(dir.getParentFile(), "config/SkyIslandsCreator");
         oldIslands = new File(directory, "islands.ser");
         islands = new File(directory, "islands.json");
         if (oldIslands.exists()) {
@@ -114,16 +114,13 @@ public class CommonProxy {
             maxIslands = config.getInt("Max Islands", "misc", 100, 1, 1000, "The maximum amount of islands that can be created. This number will be multiplied by four." +
                     " Be careful with high numbers.");
             if (!config.hasKey("misc", "Island Type")) {
-                boolean skyFactory = config.getBoolean("Sky Factory", "misc", false, "Set this to true if you are playing on Sky Factory.");
-                if (skyFactory) {
-                    islandType = config.getString("Island Type", "misc", "tree", "Set this to the type of platform you want:\n" +
-                            "  'grass'     A single grass block.\n" +
-                            "  'tree'      A small oak tree on a grass block. This is the standard start.\n" +
-                            "  'GoG'       An island similar to Garden of Glass from Botania.\n");
-                    config.moveProperty("misc", "Sky Factory", "forRemoval");
-                    config.moveProperty("misc", "Platform", "forRemoval");
-                    config.removeCategory(config.getCategory("forRemoval"));
-                }
+                islandType = config.getString("Island Type", "misc", "tree", "Set this to the type of platform you want:\n" +
+                        "  'grass'     A single grass block.\n" +
+                        "  'tree'      A small oak tree on a grass block. This is the standard start.\n" +
+                        "  'GoG'       An island similar to Garden of Glass from Botania.\n");
+                config.moveProperty("misc", "Sky Factory", "forRemoval");
+                config.moveProperty("misc", "Platform", "forRemoval");
+                config.removeCategory(config.getCategory("forRemoval"));
             } else {
                 islandType = config.getString("Island Type", "misc", "tree", "Set this to the type of platform you want:\n" +
                         "  'grass'     A single grass block.\n" +

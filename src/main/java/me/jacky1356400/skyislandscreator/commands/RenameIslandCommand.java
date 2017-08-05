@@ -6,6 +6,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.TextComponentString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,11 @@ public class RenameIslandCommand extends CommandBase implements ICommand {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] input) throws CommandException {
-        IslandUtils.renameIsland(input[0], input[1]);
+        if (input.length == 2) {
+            IslandUtils.renameIsland(input[0], input[1]);
+        } else {
+            sender.addChatMessage(new TextComponentString("Invalid arguments!"));
+        }
     }
 
 }

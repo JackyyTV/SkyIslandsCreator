@@ -46,11 +46,16 @@ public class DeleteIslandCommand extends CommandBase implements ICommand {
         World world = sender.getEntityWorld();
         EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(sender.getName());
         boolean exists = player != null;
-        IslandUtils.deleteIsland(input[0]);
-        if (exists) {
-            player.addChatComponentMessage(new TextComponentString(String.format("Successfully deleted island %s", input[0])));
+        if (input.length == 0) {
+            sender.addChatMessage(new TextComponentString("Invalid arguments!"));
         } else {
-            SkyIslandsCreator.logger.info(String.format("Successfully deleted island %s", input[0]));
+            if (exists) {
+                IslandUtils.deleteIsland(input[0]);
+                player.addChatComponentMessage(new TextComponentString(String.format("Successfully deleted island %s", input[0])));
+            } else {
+                IslandUtils.deleteIsland(input[0]);
+                SkyIslandsCreator.logger.info(String.format("Successfully deleted island %s", input[0]));
+            }
         }
     }
 

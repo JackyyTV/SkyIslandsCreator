@@ -22,6 +22,11 @@ public class SetIslandSpawnCommand extends CommandBase implements ICommand {
     }
 
     @Override
+    public List getCommandAliases() {
+        return aliases;
+    }
+
+    @Override
     public String getCommandName() {
         return aliases.get(0);
     }
@@ -34,11 +39,18 @@ public class SetIslandSpawnCommand extends CommandBase implements ICommand {
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] input) {
         String islandName = input[0];
-        int x = Integer.parseInt(input[1]);
-        int y = Integer.parseInt(input[2]);
-        int z = Integer.parseInt(input[3]);
-        IslandUtils.setSpawnForIsland(islandName, new BlockPos(x, y, z));
-        sender.addChatMessage(new TextComponentString("Island Spawn set."));
+        if (input.length == 4) {
+            int x = Integer.parseInt(input[1]);
+            int y = Integer.parseInt(input[2]);
+            int z = Integer.parseInt(input[3]);
+            IslandUtils.setSpawnForIsland(islandName, new BlockPos(x, y, z));
+            sender.addChatMessage(new TextComponentString("Island Spawn set."));
+        } else if (input.length == 1) {
+            IslandUtils.setSpawnForIsland(islandName, sender.getPosition());
+            sender.addChatMessage(new TextComponentString("Island Spawn set."));
+        } else {
+            sender.addChatMessage(new TextComponentString("Invalid arguments!"));
+        }
     }
 
 }

@@ -26,6 +26,11 @@ public class ListIslandsCommand extends CommandBase implements ICommand {
     }
 
     @Override
+    public List getCommandAliases() {
+        return aliases;
+    }
+
+    @Override
     public String getCommandName() {
         return aliases.get(0);
     }

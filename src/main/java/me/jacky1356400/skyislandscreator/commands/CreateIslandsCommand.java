@@ -34,11 +34,15 @@ public class CreateIslandsCommand extends CommandBase implements ICommand {
     public void execute(MinecraftServer server, ICommandSender sender, String[] input) throws CommandException {
         World world = sender.getEntityWorld();
         EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(sender.getName());
-        if (!IslandUtils.createIsland(world, input[0], player)) {
-            if (player != null) {
-                player.addChatComponentMessage(new TextComponentString("An island has already been created for that player!"));
-            } else {
-                SkyIslandsCreator.logger.info("An island has already been created for that player or something is broken!");
+        if (input.length == 0) {
+            sender.addChatMessage(new TextComponentString("Invalid arguments!"));
+        } else {
+            if (!IslandUtils.createIsland(world, input[0], player)) {
+                if (player != null) {
+                    player.addChatComponentMessage(new TextComponentString("An island has already been created for that player!"));
+                } else {
+                    SkyIslandsCreator.logger.info("An island has already been created for that player or something is broken!");
+                }
             }
         }
     }

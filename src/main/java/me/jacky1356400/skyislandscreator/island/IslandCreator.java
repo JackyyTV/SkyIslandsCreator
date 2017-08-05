@@ -58,7 +58,7 @@ public class IslandCreator {
                         }
                     }
                 }
-                world.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() - 1, pos.getZ()), Blocks.FLOWING_WATER.getDefaultState());
+                world.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() - 2, pos.getZ()), Blocks.FLOWING_WATER.getDefaultState());
                 int[][] roots = new int[][]{
                         {-1, -2, -1},
                         {-1, -4, -2},
