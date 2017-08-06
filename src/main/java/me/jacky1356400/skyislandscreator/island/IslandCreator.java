@@ -78,7 +78,7 @@ public class IslandCreator {
                 };
                 if (Loader.isModLoaded("botania")) {
                     world.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 3, pos.getZ() + 1), Block.REGISTRY.getObject(new ResourceLocation("botania", "manaFlame")).getDefaultState());
-                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() - 3, pos.getZ()), Blocks.BEDROCK.getDefaultState());
+                    world.setBlockState(new BlockPos(pos.getX(), pos.getY() - 4, pos.getZ()), Blocks.BEDROCK.getDefaultState());
                     for (int[] blockpos : roots) {
                         world.setBlockState(new BlockPos(pos.getX() + blockpos[0], pos.getY() + blockpos[1], pos.getZ() + blockpos[2]), Block.REGISTRY.getObject(new ResourceLocation("botania", "root")).getDefaultState());
                     }
