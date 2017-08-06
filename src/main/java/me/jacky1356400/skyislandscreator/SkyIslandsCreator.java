@@ -18,12 +18,12 @@ import java.io.IOException;
 import static me.jacky1356400.skyislandscreator.proxy.CommonProxy.islandLoc;
 import static me.jacky1356400.skyislandscreator.proxy.CommonProxy.maxIslands;
 
-@Mod(modid = SkyIslandsCreator.MODID, name = SkyIslandsCreator.NAME, version = SkyIslandsCreator.VERSION)
+@Mod(modid = SkyIslandsCreator.MODID, name = SkyIslandsCreator.NAME, version = SkyIslandsCreator.VERSION, serverSideOnly = true, acceptableRemoteVersions = "*")
 public class SkyIslandsCreator {
 
     public static final String MODID = "skyislandscreator";
     public static final String NAME = "SkyIslandsCreator";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.1";
     public static Logger logger = LogManager.getLogger("SkyIslandsCreator");
 
     @SidedProxy(serverSide = "me.jacky1356400.skyislandscreator.proxy.CommonProxy", clientSide = "me.jacky1356400.skyislandscreator.proxy.ClientProxy")
