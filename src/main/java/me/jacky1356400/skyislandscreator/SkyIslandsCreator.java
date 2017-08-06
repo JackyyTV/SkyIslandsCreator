@@ -18,7 +18,7 @@ import java.io.IOException;
 import static me.jacky1356400.skyislandscreator.proxy.CommonProxy.islandLoc;
 import static me.jacky1356400.skyislandscreator.proxy.CommonProxy.maxIslands;
 
-@Mod(modid = SkyIslandsCreator.MODID, name = SkyIslandsCreator.NAME, version = SkyIslandsCreator.VERSION, serverSideOnly = true, acceptableRemoteVersions = "*")
+@Mod(modid = SkyIslandsCreator.MODID, name = SkyIslandsCreator.NAME, version = SkyIslandsCreator.VERSION, acceptableRemoteVersions = "*")
 public class SkyIslandsCreator {
 
     public static final String MODID = "skyislandscreator";
