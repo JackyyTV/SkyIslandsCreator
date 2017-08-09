@@ -53,4 +53,14 @@ public class ListIslandsCommand extends CommandBase implements ICommand {
         }
     }
 
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 0;
+    }
+
+    @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
+    }
+
 }
