@@ -36,11 +36,6 @@ public class JoinIslandCommand extends CommandBase implements ICommand {
     }
 
     @Override
-    public int getRequiredPermissionLevel() {
-        return 2;
-    }
-
-    @Override
     public String getUsage(ICommandSender sender) {
         return "skyislands_join <IslandName>";
     }
@@ -61,5 +56,16 @@ public class JoinIslandCommand extends CommandBase implements ICommand {
             IslandUtils.joinIsland(input[0], player);
         }
     }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 0;
+    }
+
+    @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
+    }
+
 
 }
