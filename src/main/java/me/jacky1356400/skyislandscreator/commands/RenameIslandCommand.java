@@ -1,5 +1,6 @@
 package me.jacky1356400.skyislandscreator.commands;
 
+import me.jacky1356400.skyislandscreator.SkyIslandsCreator;
 import me.jacky1356400.skyislandscreator.island.IslandUtils;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -40,6 +41,11 @@ public class RenameIslandCommand extends CommandBase implements ICommand {
     public void execute(MinecraftServer server, ICommandSender sender, String[] input) throws CommandException {
         if (input.length == 2) {
             IslandUtils.renameIsland(input[0], input[1]);
+            if (!sender.getEntityWorld().isRemote) {
+                sender.sendMessage(new TextComponentString("Renamed island from " + input[0] + " to " + input[1]));
+            } else {
+                SkyIslandsCreator.logger.info("Renamed island from " + input[0] + " to " + input[1]);
+            }
         } else {
             sender.sendMessage(new TextComponentString("Invalid arguments!"));
         }

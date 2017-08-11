@@ -119,7 +119,6 @@ public class CommonProxy {
                         "  'grass'     A single grass block.\n" +
                         "  'tree'      A small oak tree on a grass block. This is the standard start.\n" +
                         "  'GoG'       An island similar to Garden of Glass from Botania.\n");
-                config.removeCategory(config.getCategory("forRemoval"));
             } else {
                 islandType = config.getString("Island Type", "misc", "tree", "Set this to the type of platform you want:\n" +
                         "  'grass'     A single grass block.\n" +
