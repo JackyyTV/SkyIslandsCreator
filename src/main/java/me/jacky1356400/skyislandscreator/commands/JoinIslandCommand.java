@@ -48,12 +48,11 @@ public class JoinIslandCommand extends CommandBase implements ICommand {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] input) throws CommandException {
-        World world = sender.getEntityWorld();
-        EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(sender.getName());
         if (input.length == 0) {
             sender.sendMessage(new TextComponentString("Invalid arguments!"));
         } else {
-            IslandUtils.joinIsland(input[0], player);
+            EntityPlayerMP player = getPlayer(server, sender, input[0]);
+            IslandUtils.joinIsland(player.getName(), player);
         }
     }
 
