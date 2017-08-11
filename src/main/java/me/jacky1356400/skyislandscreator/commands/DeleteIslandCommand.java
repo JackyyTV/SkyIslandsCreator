@@ -9,7 +9,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,13 +42,11 @@ public class DeleteIslandCommand extends CommandBase implements ICommand {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] input) throws CommandException {
-        World world = sender.getEntityWorld();
-        EntityPlayerMP player = (EntityPlayerMP) world.getPlayerEntityByName(sender.getName());
-        boolean exists = player != null;
         if (input.length == 0) {
             sender.addChatMessage(new TextComponentString("Invalid arguments!"));
         } else {
-            if (exists) {
+            EntityPlayerMP player = getPlayer(server, sender, sender.getName());
+            if (!player.getEntityWorld().isRemote) {
                 IslandUtils.deleteIsland(input[0]);
                 player.addChatComponentMessage(new TextComponentString(String.format("Successfully deleted island %s", input[0])));
             } else {

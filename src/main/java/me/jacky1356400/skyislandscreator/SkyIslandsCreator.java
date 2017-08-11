@@ -23,7 +23,7 @@ public class SkyIslandsCreator {
 
     public static final String MODID = "skyislandscreator";
     public static final String NAME = "SkyIslandsCreator";
-    public static final String VERSION = "1.2";
+    public static final String VERSION = "1.2.1";
     public static Logger logger = LogManager.getLogger("SkyIslandsCreator");
 
     @SidedProxy(serverSide = "me.jacky1356400.skyislandscreator.proxy.CommonProxy", clientSide = "me.jacky1356400.skyislandscreator.proxy.ClientProxy")
