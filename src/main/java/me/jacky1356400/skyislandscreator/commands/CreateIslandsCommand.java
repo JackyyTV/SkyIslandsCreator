@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CreateIslandsCommand extends CommandBase implements ICommand {
 
@@ -37,7 +38,7 @@ public class CreateIslandsCommand extends CommandBase implements ICommand {
             sender.sendMessage(new TextComponentString("Invalid arguments!"));
         } else {
             EntityPlayerMP player = getPlayer(server, sender, input[0]);
-            if (!IslandUtils.createIsland(world, player.getName(), player)) {
+            if (!IslandUtils.createIsland(world, Objects.equals(input[0], "@p") ? player.getName() : input[0], player)) {
                 if (!sender.getEntityWorld().isRemote) {
                     player.sendMessage(new TextComponentString("An island has already been created for that player!"));
                 } else {
@@ -54,7 +55,7 @@ public class CreateIslandsCommand extends CommandBase implements ICommand {
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "skyislands_create <name> or create <name> <player>";
+        return "skyislands_create <name>";
     }
 
     @Override
@@ -65,8 +66,7 @@ public class CreateIslandsCommand extends CommandBase implements ICommand {
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] input, BlockPos targetPos) {
         return input.length == 1 ? getListOfStringsMatchingLastWord(input, server.getServer().getOnlinePlayerNames())
-                : (input.length == 2 ? getListOfStringsMatchingLastWord(input, server.getServer().getOnlinePlayerNames())
-                : null);
+                : null;
     }
 
 }
