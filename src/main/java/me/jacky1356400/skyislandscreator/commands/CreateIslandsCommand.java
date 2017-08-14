@@ -12,8 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CreateIslandsCommand extends CommandBase implements ICommand {
 
@@ -37,7 +39,7 @@ public class CreateIslandsCommand extends CommandBase implements ICommand {
             sender.addChatMessage(new TextComponentString("Invalid arguments!"));
         } else {
             EntityPlayerMP player = getPlayer(server, sender, input[0]);
-            if (!IslandUtils.createIsland(world, player.getName(), player)) {
+            if (!IslandUtils.createIsland(world, Objects.equals(input[0], "@p") ? player.getName() : input[0], player)) {
                 if (!sender.getEntityWorld().isRemote) {
                     player.addChatComponentMessage(new TextComponentString("An island has already been created for that player!"));
                 } else {
@@ -54,7 +56,7 @@ public class CreateIslandsCommand extends CommandBase implements ICommand {
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "skyislands_create <name> or create <name> <player>";
+        return "skyislands_create <name>";
     }
 
     @Override
@@ -63,10 +65,9 @@ public class CreateIslandsCommand extends CommandBase implements ICommand {
     }
 
     @Override
-    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] input, BlockPos targetPos) {
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] input, @Nullable BlockPos pos) {
         return input.length == 1 ? getListOfStringsMatchingLastWord(input, server.getServer().getAllUsernames())
-                : (input.length == 2 ? getListOfStringsMatchingLastWord(input, server.getServer().getAllUsernames())
-                : null);
+                : null;
     }
 
 }

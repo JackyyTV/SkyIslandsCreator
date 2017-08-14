@@ -50,8 +50,8 @@ public class JoinIslandCommand extends CommandBase implements ICommand {
         if (input.length == 0) {
             sender.addChatMessage(new TextComponentString("Invalid arguments!"));
         } else {
-            EntityPlayerMP player = getPlayer(server, sender, input[0]);
-            IslandUtils.joinIsland(player.getName(), player);
+            EntityPlayerMP player = getCommandSenderAsPlayer(sender);
+            IslandUtils.joinIsland(input[0], player);
         }
     }
 
