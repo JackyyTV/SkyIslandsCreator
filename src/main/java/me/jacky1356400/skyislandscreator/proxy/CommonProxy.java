@@ -20,6 +20,13 @@ import java.util.HashMap;
 
 public class CommonProxy {
 
+    public static ArrayList<IslandCreator.IslandPos> islandLoc = new ArrayList<IslandCreator.IslandPos>();
+    private static File oldIslands;
+    private static File directory;
+    public static int maxIslands;
+    public static File islands;
+    public static String islandType;
+
     public void preInit(FMLPreInitializationEvent event) {
         Config.init(new File(event.getModConfigurationDirectory(), "SkyIslandsCreator/SkyIslandsCreator.cfg"));
         File dir = event.getModConfigurationDirectory();
@@ -58,13 +65,6 @@ public class CommonProxy {
         }
         br.close();
     }
-
-    public static ArrayList<IslandCreator.IslandPos> islandLoc = new ArrayList<IslandCreator.IslandPos>();
-    private static File oldIslands;
-    private static File directory;
-    public static int maxIslands;
-    public static File islands;
-    public static String islandType;
 
     private static void convert() throws IOException, ClassNotFoundException {
         if (!oldIslands.exists()) {
